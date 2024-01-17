@@ -336,7 +336,9 @@ fn build_libsodium() {
 
     // Determine build target triple
     let mut out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+    println!("cargo:out_dir={}", out_dir.display());
     let target = env::var("TARGET").unwrap();
+    println!("target {}", target);
     let profile = env::var("PROFILE").unwrap();
 
     // Avoid issues with paths containing spaces by falling back to using a tempfile.
@@ -357,7 +359,7 @@ fn build_libsodium() {
     // Determine source and install dir
     let install_dir = out_dir.join("installed");
     let source_dir = out_dir.join("source").join("libsodium");
-
+    println!("source_dir {}", source_dir.display());
     // Create directories
     fs::create_dir_all(&install_dir).unwrap();
     fs::create_dir_all(&source_dir).unwrap();
